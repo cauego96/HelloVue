@@ -1,15 +1,17 @@
 <template>
-  <Commentator/>
+  <div>
+    <CommentatorComponent commentator="Caue Oliveira" />
+  </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import Commentator from './components/Commentator.vue';
+  import { defineComponent } from 'vue';
+  import CommentatorComponent from './components/CommentatorComponent.vue';
 
-@Options({
-  components: {
-    Commentator,
-  },
-})
-export default class App extends Vue {}
+  export default defineComponent({
+    name: 'ParentComponent',
+    components: {
+        CommentatorComponent
+    }
+  });
 </script>

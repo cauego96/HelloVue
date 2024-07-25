@@ -6,16 +6,24 @@
         <p>
             {{ commentary }}
         </p>
+        <p>
+            Name: {{ commentator }}
+        </p>
     </div>
 </template>
 
 <script lang="ts">
-
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
     name: 'CommentatorComponent',
-    setup() {
+    props:  {
+        commentator: {
+            type: String,
+            required: true
+        }
+    },
+    setup(props) {
         const commentary = ref('');
 
         const comment = () => {
@@ -24,7 +32,8 @@ export default defineComponent({
 
         return {
             commentary,
-            comment
+            comment,
+            props : props.commentator
         };
     }
 });
