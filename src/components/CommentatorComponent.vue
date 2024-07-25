@@ -4,16 +4,20 @@
             Comment
         </button>
         <p>
-            {{ commentary }}
-        </p>
-        <p>
             Name: {{ commentator }}
         </p>
+
+        <p> 
+            {{ NameAndComment }} 
+        </p>
+        <!-- <p>
+            {{ commentary }}
+        </p> -->
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 
 export default defineComponent({
     name: 'CommentatorComponent',
@@ -30,11 +34,17 @@ export default defineComponent({
             commentary.value = "Olá Vue";
         };
 
+        const NameAndComment = computed(() => {
+            return (commentary.value != null) && (commentary.value != '') ?  `${props.commentator} - ${commentary.value}` : 'Waiting Comment'
+        });
+
         return {
             commentary,
             comment,
-            props : props.commentator
+            props : props.commentator,
+            NameAndComment
         };
     }
+    
 });
 </script>
